@@ -20,3 +20,5 @@ Sample:
 `python3 github_bright.py ghub_user ghub_pass Hellisotherpeople/Python-Cooperative-Synapse-NeuroEvolution 0`
 
 # Example
+
+![](ezgif.com-video-to-gif.gif)
