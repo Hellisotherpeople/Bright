@@ -6,9 +6,7 @@ It searches through all of the people who starred a particular repo, then looks 
 
 The intuition behind this is that a user who has a cumulative 1000 github stars is likely more experienced and knowledgable than a user with 0 github stars. Repositories which have thousands of stars from fake bot accounts (whose accounts would have 0 cumulative stars) would have a brightness score of zero, but a repository which seems unimportant but had a highly experienced developer star it would have a high brightness score. 
 
-The mad scientist in me is compelled to warn you that chaotic, unpredictable magic may happen if you decide to recursively call this function. 
-
-There is a tunable option for only visualizing other peoples repos who has more than `cut_off_number` number of stars
+There is a tunable option for only visualizing other peoples repos who has more than `cut_off_number` number of stars. This defaults to 1
 
 # Install Instructions
 
@@ -18,6 +16,7 @@ There is a tunable option for only visualizing other peoples repos who has more 
 
 Replace each bracketed expression with the corresponding string, the `cut_off_number` is optional.
 
-Example:
+Sample:
 `python3 github_bright.py ghub_user ghub_pass Hellisotherpeople/Python-Cooperative-Synapse-NeuroEvolution 0`
 
+# Example
