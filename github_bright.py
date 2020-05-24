@@ -14,14 +14,19 @@ g = Github(sys.argv[1], sys.argv[2]) ## username and password
 
 
 def get_starrgazers_for_repo(repo_name, star_cutoff = 1):
+    '''
+    The mad scientist in me is compelled to warn you that chaotic, unpredictable magic may happen if you decide to recursively call this function. 
+    '''
     print("Analyzing " + repo_name)
     print("---------------------------------------------------------------------------------")
     repo = g.get_repo(repo_name) ## start with a repo 
     stargazers = repo.get_stargazers() ## get the people who starred it
     total_stars = 0
     tree.create_node(repo_name, repo_name.lower()) ##Root node should be the repo
+    num_users = 0 
     for user in stargazers:
         if user.name is not None:
+            num_users += 1
             tree.create_node(user.name, user.name.lower(), parent=repo_name.lower())
             repos = user.get_repos(type = "owner") ## get the user repos
             user_stars = 0 
@@ -38,7 +43,10 @@ def get_starrgazers_for_repo(repo_name, star_cutoff = 1):
     print("---------------------------------------------------------------------------------")
     print('\x1b[6;30;42m' + "Brightness Score (Total Stars): " + str(total_stars) + '\x1b[0m')
     tree.show(line_type="ascii-em")
+    bright_per_person = total_stars / num_users
     print('\x1b[6;30;42m' + "Brightness Score (Total Stars): " + str(total_stars) + '\x1b[0m') ## do the print at the bottom again so that it's obvious right at the end after a giant tree is generated
+    print("Number of Stargazers: " + str(num_users))
+    print("Brightness Score Per Stargazer: " + str(bright_per_person))
 
 if len(sys.argv) > 4:
     stargazers = get_starrgazers_for_repo(sys.argv[3], int(sys.argv[4]))
